@@ -15,6 +15,8 @@ const Campground = require('./models/campgrounds');
 const Comment = require('./models/comments');
 const seedDB = require('./seeds');
 
+let commentRoutes = require('./routes/comments')
+
 
 seedDB();
 
