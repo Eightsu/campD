@@ -42,6 +42,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Middleware
+
+// Pass user on all routes
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next(); // REMEMBER TO ALWAYS INVOKE NEXT ON RETURN OR NOTHING HAPPENS.
@@ -55,12 +62,11 @@ app.get('/', (req, res) => {
 
 // INDEX ROUTE
 app.get('/campgrounds', (req, res) => {
-  // res.render("campgrounds", {campgrounds:campSites});
   Campground.find({}, (err, campgrounds) => {
     if (err) {
       console.log(err);
     } else {
-      res.render('campgrounds/campgrounds', { campgrounds });
+      res.render('campgrounds/campgrounds', { campgrounds, currentUser: req.user });
     }
   });
 }); //

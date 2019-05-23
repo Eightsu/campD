@@ -9,9 +9,16 @@
         <div class="navbar">
        <a href="/"><h1 class="title" id="logo"> Su-Camp</h1></a>
         <div class="navbar-links">
+
+       <%  if (!currentUser) { %>
         <a href="/register">Signup</a>
         <a href="/login">Login</a>
+       <% } else { %>
+        <a> Signed in as <%= currentUser.username %>   </a>
         <a href="/logout">Logout</a>
+       <% } %>
+
+
         </div>
         </div>
         </nav>
