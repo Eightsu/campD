@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+
+<div class="item">
+
+
+<div class ="sidebar"> 
+<h3 class="sidebar-title">SuCamp </h3>
+<li class="info"> Info One </li>
+<li class="info"> Info Two </li>
+<li class="info"> Info Three </li>
+<div> </div>
+
+</div>
+    <h1><a class="camp-name"><%= campground.name %></a></h1>
+    <img src=<%= campground.image %>>
+        <div class="camp-info"> 
+        <p class="camp-description"> <%= campground.description %></p>
+        <p class ="price">$9.00/Night </p>
+        </div>
+    
+    <% campground.comments.forEach(function(comment){ %>
+    <div class="comments-wrapper" > 
+   <p class="comments"> <%= comment.text %> - <strong> <%= comment.author %> </strong>  </p>
+    <span class="comment-timestamp"> 10 Days ago </span>
+    </div>
+    
+    <% }) %>
+    <p><a class="button" href="/campgrounds/<%= campground._id %>/comments/new">Add a new comment</a> </p>
+</div>
+
+
+<% include ../partials/footer %>

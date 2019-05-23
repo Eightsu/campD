@@ -1,0 +1,23 @@
+
+<% include ../partials/header %>
+
+
+
+    <h2 class="tagline">Our Most Popular Campgrounds.</h2>
+</div>
+
+<div>
+
+
+<% campgrounds.forEach(function(campground){ %>
+
+<div class="item">
+<img  src="<%= campground.image %>" >
+<h4> <%=campground.name  %> </h4>
+<a href="/campgrounds/<%= campground._id %>" class="button">More Info</a>
+</div>
+
+<%  }); %>
+
+
+<% include ../partials/footer %>
