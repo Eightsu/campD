@@ -15,10 +15,11 @@ const Campground = require('./models/campgrounds');
 const Comment = require('./models/comments');
 const seedDB = require('./seeds');
 
+// ROUTES
 const commentRoutes = require('./routes/comments');
 const campgroundRoutes = require('./routes/campgrounds');
 const authRoutes = require('./routes/auth');
-
+// ---------
 
 seedDB();
 
@@ -53,6 +54,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(authRoutes, campgroundRoutes, commentRoutes);
+app.use(authRoutes);
+app.use(commentRoutes);
+app.use(campgroundRoutes);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
