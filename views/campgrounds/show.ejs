@@ -21,7 +21,7 @@
     
     <% campground.comments.forEach(function(comment){ %>
     <div class="comments-wrapper" > 
-   <p class="comments"> <%= comment.text %> - <strong> <%= comment.author %> </strong>  </p>
+   <p class="comments"> <%= comment.text %> <strong> <%= comment.author.username %> </strong>  </p>
     <span class="comment-timestamp"> 10 Days ago </span>
     </div>
     

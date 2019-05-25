@@ -37,30 +37,30 @@ function seedDB() {
         console.log('removed Comments.');
       });
     }
-    data.forEach((seed) => {
-      Campground.create(seed, (err, campground) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log('Added Campground.');
-          Comment.create(
-            {
-              text: 'Absolutely breathtaking.',
-              author: 'Jill Barnes',
-            },
-            (err, comment) => {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log('Comment added.');
-                campground.comments.push(comment);
-                campground.save();
-              }
-            },
-          );
-        }
-      });
-    });
+    // data.forEach((seed) => {
+    //   Campground.create(seed, (err, campground) => {
+    //     if (err) {
+    //       console.log(err);
+    //     } else {
+    //       console.log('Added Campground.');
+    //       Comment.create(
+    //         {
+    //           text: 'Absolutely breathtaking.',
+    //           author: 'Jill Barnes',
+    //         },
+    //         (err, comment) => {
+    //           if (err) {
+    //             console.log(err);
+    //           } else {
+    //             console.log('Comment added.');
+    //             campground.comments.push(comment);
+    //             campground.save();
+    //           }
+    //         },
+    //       );
+    //     }
+    //   });
+    // });
   });
 }
 module.exports = seedDB;

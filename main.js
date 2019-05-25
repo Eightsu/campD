@@ -9,11 +9,10 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const mongoose = require('mongoose');
-
 const User = require('./models/users');
 const Campground = require('./models/campgrounds');
 const Comment = require('./models/comments');
-const seedDB = require('./seeds');
+// const seedDB = require('./seeds');
 
 // ROUTES
 const commentRoutes = require('./routes/comments');
@@ -21,7 +20,7 @@ const campgroundRoutes = require('./routes/campgrounds');
 const authRoutes = require('./routes/auth');
 // ---------
 
-seedDB();
+// seedDB();
 
 // PASSPORT CONFIG
 app.use(require('express-session')({
@@ -55,7 +54,7 @@ app.use((req, res, next) => {
 });
 
 app.use(authRoutes);
-app.use(commentRoutes);
-app.use(campgroundRoutes);
+app.use('/campgrounds/:id/comments', commentRoutes);
+app.use('/campgrounds', campgroundRoutes);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

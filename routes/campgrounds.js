@@ -5,7 +5,7 @@ const Campground = require('../models/campgrounds');
 const router = express.Router();
 
 // INDEX ROUTE
-router.get('/campgrounds', (req, res) => {
+router.get('/', (req, res) => {
   Campground.find({}, (err, campgrounds) => {
     if (err) {
       console.log(err);
@@ -16,7 +16,7 @@ router.get('/campgrounds', (req, res) => {
 }); //
 
 // CREATE ROUTE
-router.post('/campgrounds', (req, res) => {
+router.post('/', (req, res) => {
   const { name } = req.body;
   const { image } = req.body;
   const desc = req.body.description;
@@ -38,12 +38,12 @@ router.post('/campgrounds', (req, res) => {
   // campSites.push(newCamp); // Add new camp to list.
 });
 
-router.get('/campgrounds/new', (req, res) => {
+router.get('/new', (req, res) => {
   res.render('campgrounds/new');
 });
 
 // Show Route
-router.get('/campgrounds/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Campground.findById(req.params.id)
     .populate('comments')
     .exec((err, found) => {
