@@ -3,6 +3,13 @@
   box-sizing: border-box;
 }
 
+img{
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+}
+
+
 .item {
   display: flex;
   flex-wrap: wrap;
@@ -226,4 +233,16 @@ div > a {
   font-weight: 400;
   margin: 0;
   align-self: flex-end;
+}
+
+#delete-btn{
+  background-color: rgba(109, 46, 46, 0.048);
+  margin-top: 24px;
+  padding: 12 0 0 0;
+  border-bottom: none;
+  font-weight: lighter;
+}
+
+#delete-btn:hover{
+  color: crimson;
 }
