@@ -8,28 +8,28 @@ const router = express.Router();
 
 // Middleware
 
-const checkOwner = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    Campground.findById(req.params.id)
-      .exec((err, found) => {
-        if (err) {
-          res.redirect('back');
-        }
-        if (found.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect('back');
-        }
-      });
-  } else { res.redirect('back'); }
-};
+// const checkOwner = (req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     Campground.findById(req.params.id)
+//       .exec((err, found) => {
+//         if (err) {
+//           res.redirect('back');
+//         }
+//         if (found.author.id.equals(req.user._id)) {
+//           next();
+//         } else {
+//           res.redirect('back');
+//         }
+//       });
+//   } else { res.redirect('back'); }
+// };
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  return res.redirect('/login');
-}
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   return res.redirect('/login');
+// }
 
 // INDEX ROUTE
 router.get('/', (req, res) => {
