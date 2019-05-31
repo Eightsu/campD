@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
 });
 
 // CREATE ROUTE
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/', (req, res) => {
   const { name } = req.body;
   const { image } = req.body;
   const desc = req.body.description;
@@ -70,7 +70,7 @@ router.post('/', isLoggedIn, (req, res) => {
   // campSites.push(newCamp); // Add new camp to list.
 });
 
-router.get('/new', isLoggedIn, (req, res) => {
+router.get('/new', (req, res) => {
   res.render('campgrounds/new');
 });
 
@@ -89,25 +89,30 @@ router.get('/:id', (req, res) => {
 });
 
 // Edit Campground
-router.get('/:id/edit', checkOwner, (req, res) => {
-  Campground.findById((req.params.id, (err, found) => {
-    res.render('campgrounds/edit', { campground: found });
-  }));
+router.get('/:id/edit', (req, res) => {
+  Campground.findById(req.params.id)
+    .exec((err, found) => {
+      if (err) {
+        return new Error();
+      }
+      console.log(found);
+      return res.render('campgrounds/edit', { campground: found });
+    });
 });
 
 // Update Campground
-router.put('/:id', checkOwner, (req, res) => {
+router.put('/:id', (req, res) => {
   Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCamp) => {
     if (err) {
       console.log(err, updatedCamp);
     } else {
-      res.redirect(`/campgrounds/${req.params.id}`);
+      res.redirect(`/campgrounds/${req.params.id}/`);
     }
   });
 });
 
 // Destroy Campground
-router.delete('/:id', checkOwner, (req, res) => {
+router.delete('/:id', (req, res) => {
   Campground.findByIdAndRemove(req.params.id, (err, campgroundRemoved) => {
     if (err) {
       console.log(err);
