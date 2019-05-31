@@ -9,7 +9,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next(); // REMEMBER TO ALWAYS INVOKE NEXT ON RETURN OR NOTHING HAPPENS.
   }
-  return res.redirect('/login');
+  res.redirect('/login');
 }
 
 router.get('/', (req, res) => {
@@ -31,7 +31,7 @@ router.post('/register', (req, res) => {
       console.log(err);
       return res.render('/register');
     }
-    return passport.authenticate('local')(req, res, () => {
+    passport.authenticate('local')(req, res, () => {
       res.redirect('/campgrounds');
     });
   });
