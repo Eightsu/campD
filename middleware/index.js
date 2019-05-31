@@ -1,5 +1,8 @@
 const midWare = {};
 
+const Campground = require('../models/campgrounds');
+const Comment = require('../models/comments');
+
 midWare.checkOwner = (req, res, next) => {
   if (req.isAuthenticated()) {
     Campground.findById(req.params.id)
