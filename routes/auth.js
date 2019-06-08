@@ -5,13 +5,6 @@ const User = require('../models/users');
 
 const router = express.Router();
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next(); // REMEMBER TO ALWAYS INVOKE NEXT ON RETURN OR NOTHING HAPPENS.
-  }
-  res.redirect('/login');
-}
-
 router.get('/', (req, res) => {
   res.render('landing');
 });
@@ -28,17 +21,20 @@ router.post('/register', (req, res) => {
   // eslint-disable-next-line no-unused-vars
   User.register(newUser, req.body.password, (err, user) => {
     if (err) {
-      console.log(err);
-      return res.render('/register');
+      req.flash('error', err.message);
+      return res.render('register');
     }
-    passport.authenticate('local')(req, res, () => {
+    return passport.authenticate('local')(req, res, () => {
+      req.flash('success', `Thanks for signing up ${user.username}!`);
       res.redirect('/campgrounds');
     });
   });
 });
 
 // Show Login Form
-router.get('/login', (req, res) => { res.render('login'); });
+router.get('/login', (req, res) => {
+  res.render('login');
+});
 
 // Handle Login Form
 router.post('/login', passport.authenticate('local',
@@ -51,6 +47,7 @@ router.post('/login', passport.authenticate('local',
 // Logout route
 router.get('/logout', (req, res) => {
   req.logOut();
+  req.flash('success', 'Logout Successful');
   res.redirect('/campgrounds');
 });
 

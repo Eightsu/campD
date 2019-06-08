@@ -4,6 +4,7 @@ const express = require('express');
 
 const port = 3000;
 const app = express();
+const flash = require('connect-flash');
 
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
@@ -24,6 +25,7 @@ const authRoutes = require('./routes/auth');
 
 // seedDB();
 
+app.use(flash());
 // PASSPORT CONFIG
 app.use(require('express-session')({
   secret: 'passwordish',
@@ -45,14 +47,18 @@ mongoose.connect('mongodb://localhost:27017/su_camp', {
 });
 app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Middleware
 
-// Pass user on all routes
+// Pass variables on all routes
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  res.locals.warning = req.flash('warning');
   next();
 });
 

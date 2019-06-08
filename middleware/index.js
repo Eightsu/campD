@@ -8,21 +8,27 @@ midWare.checkOwner = (req, res, next) => {
     Campground.findById(req.params.id)
       .exec((err, found) => {
         if (err) {
+          req.flash('error', 'Camgpground, not found.');
           res.redirect('back');
         }
         if (found.author.id.equals(req.user._id)) {
           next();
         } else {
+          req.flash('error', 'you don\'t have permission to do that.');
           res.redirect('back');
         }
       });
-  } else { res.redirect('back'); }
+  } else {
+    req.flash('error', 'you need to be logged in to do that.');
+    res.redirect('back');
+  }
 };
 
 midWare.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
+  req.flash('error', 'you need to be logged in, to do that.');
   return res.redirect('/login');
 };
 

@@ -3,33 +3,9 @@
 const express = require('express');
 const Campground = require('../models/campgrounds');
 const Comment = require('../models/comments');
+const midW = require('../middleware');
 
 const router = express.Router();
-
-// Middleware
-
-const checkOwner = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    Campground.findById(req.params.id)
-      .exec((err, found) => {
-        if (err) {
-          res.redirect('back');
-        }
-        if (found.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect('back');
-        }
-      });
-  } else { res.redirect('back'); }
-};
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  return res.redirect('/login');
-}
 
 // INDEX ROUTE
 router.get('/', (req, res) => {
@@ -43,7 +19,7 @@ router.get('/', (req, res) => {
 });
 
 // CREATE ROUTE
-router.post('/', (req, res) => {
+router.post('/', midW.isLoggedIn, (req, res) => {
   const { name } = req.body;
   const { image } = req.body;
   const desc = req.body.description;
@@ -70,7 +46,7 @@ router.post('/', (req, res) => {
   // campSites.push(newCamp); // Add new camp to list.
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', midW.isLoggedIn, (req, res) => {
   res.render('campgrounds/new');
 });
 
@@ -89,7 +65,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Edit Campground
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', midW.checkOwner, (req, res) => {
   Campground.findById(req.params.id)
     .exec((err, found) => {
       if (err) {
@@ -101,7 +77,7 @@ router.get('/:id/edit', (req, res) => {
 });
 
 // Update Campground
-router.put('/:id', (req, res) => {
+router.put('/:id', midW.checkOwner, (req, res) => {
   Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCamp) => {
     if (err) {
       console.log(err, updatedCamp);
@@ -112,7 +88,7 @@ router.put('/:id', (req, res) => {
 });
 
 // Destroy Campground
-router.delete('/:id', (req, res) => {
+router.delete('/:id', midW.checkOwner, (req, res) => {
   Campground.findByIdAndRemove(req.params.id, (err, campgroundRemoved) => {
     if (err) {
       console.log(err);
