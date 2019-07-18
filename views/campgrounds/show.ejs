@@ -15,13 +15,14 @@
     <h1><a class="camp-name"><%= campground.name %></a></h1>
     <img src=<%= campground.image %>>
         <div class="camp-info"> 
-        <p class="camp-description"> <%= campground.description %></p>
+        <p class="camp-description"> <%= campground.description %> <a class='ui-btn'>Edit </a>  </p>
+       <span class='camp-description'> Added by <%= campground.author.username %> </span>
         <p class ="price">$9.00/Night </p>
         </div>
     
     <% campground.comments.forEach(function(comment){ %>
     <div class="comments-wrapper" > 
-   <p class="comments"> <%= comment.text %> - <strong> <%= comment.author %> </strong>  </p>
+   <p class="comments"> <%= comment.text %> <strong> <%= comment.author.username %> </strong>  </p>
     <span class="comment-timestamp"> 10 Days ago </span>
     </div>
     
