@@ -3,6 +3,7 @@
     <head>
         <title>YelpCamp-Demo</title>
         <link href="/style.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
     </head>
     <body>
         <nav>
@@ -16,11 +17,23 @@
        <% } else { %>
         <a> Signed in as <%= currentUser.username %>   </a>
         <a href="/logout">Logout</a>
-       <% } %>
+       <% }; %>
 
 
         </div>
         </div>
         </nav>
+
+        <% if(error && error.length > 0){ %>
+        <div class='alert'>
+        <h1 id='error-alert'> <%= error %> </h1>
+        </div>
+        <% }; %>
+
+        <% if(success && success.length > 0) { %>
+        <div class='alert'>
+        <h1 id='success-alert'> <%= success %> </h1>
+        </div>
+        <% }; %>
         
         

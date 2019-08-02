@@ -15,7 +15,7 @@
     <h1><a class="camp-name"><%= campground.name %></a></h1>
     <img src=<%= campground.image %>>
         <div class="camp-info"> 
-        <p class="camp-description"> <%= campground.description %> <a class='ui-btn'>Edit </a>  </p>
+        <p class="camp-description"> <%= campground.description %>  </p>
        <span class='camp-description'> Added by <%= campground.author.username %> </span>
         <p class ="price">$9.00/Night </p>
         </div>
@@ -24,10 +24,26 @@
     <div class="comments-wrapper" > 
    <p class="comments"> <%= comment.text %> <strong> <%= comment.author.username %> </strong>  </p>
     <span class="comment-timestamp"> 10 Days ago </span>
+        <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+    <a href="/campgrounds/<%=campground._id %>/comments/<%=comment._id%>/edit">Edit comment </a>
+    <form action='/campgrounds/<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE' method = 'POST'> 
+     <button class='ui-btn' id='delete-btn'> Delete Comment </button>
+     </form>
+     <% }; %>
     </div>
-    
-    <% }) %>
+        
+    <% }); %>
+
+    <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
+     <a href="/campgrounds/<%= campground._id %>/edit" class='ui-btn'>Edit Campground </a>
+
+     <form action='/campgrounds/<%= campground._id%>?_method=DELETE' method = 'POST'> 
+     <button class='ui-btn' id='delete-btn'> Delete Campground </button>
+     </form>
+    <% }; %>
+
     <p><a class="button" href="/campgrounds/<%= campground._id %>/comments/new">Add a new comment</a> </p>
+
 </div>
 
 

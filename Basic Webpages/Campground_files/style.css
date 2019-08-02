@@ -1,0 +1,27 @@
+img {
+  width: 100%;
+  max-width: 30%;
+  max-height: 240px;
+  object-fit: cover;
+  
+}
+
+.alert{
+  width: 50vw;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  
+}
+
+#success-alert{
+  color: aliceblue;
+  background-color: teal;
+  padding: inherit;
+}
+
+#error-alert{
+  color: white;
+  background-color: tomato;
+  padding: inherit;
+}

@@ -1,229 +1,136 @@
-* {
-  font-family: sans-serif;
+*{
   box-sizing: border-box;
-}
-
-.item {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin: 64px 0 32px 0;
-  align-items: center;
-}
-
-.item-button {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
   margin: 0;
-  align-self: center;
-}
-
-.sidebar {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  align-self: flex-start;
-  position: relative;
-  margin-left: 48px;
-  width: 80px;
-  margin-right: 48px;
-}
-
-.sidebar-title {
-  margin-bottom: 16px;
-  font-size: 24px;
-}
-
-.info {
-  list-style: none;
-  text-align: center;
-  border-bottom: 1px solid rgb(189, 186, 186);
-  padding: 4px;
-  width: 80px;
-}
-
-.tagline {
-  text-align: center;
-  font-size: 4rem;
-}
-
-.tagline-edit {
-  font-size: 3rem;
-}
-
-.ui-btn {
-  font-size: inherit;
-  margin: 0;
-  padding: 0 12px;
-  border-bottom: 2px solid rgb(230, 116, 116);
-}
-
-h4,
-h1,
-h1 > .title {
-  font-size: 64px;
   padding: 0;
-  margin: 16px 0 0 0;
-  font-weight: lighter;
-}
-.camp-name {
-  font-size: 64px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
-h3 {
-  font-size: 32px;
-  padding: 0;
-  margin: 16px 0 0 0;
-  font-weight: lighter;
-}
 
 img {
-  width: 500px;
+  width: 100%;
+  max-width: 30%;
+  max-height: 240px;
+  object-fit: cover;
+  
 }
 
-/*.title{*/
-/*    margin-bottom: 24px;*/
-/*}*/
-
-a {
-  font-size: 24px;
-  font-weight: lighter;
-  margin: 16px 0 0 0;
-  padding: 0;
-  color: black;
-  text-decoration: none;
-}
-
-a:visited {
-  color: black;
-}
-
-a:hover {
-  color: rgb(230, 116, 116);
-}
-
-input {
-  margin: 32px 16px 32px 0;
-  border: none;
-  font-size: 16px;
-  outline: none;
-}
-
-button,
-.btn {
-  border: none;
-  color: black;
-  font-size: 16px;
-  transition: transform ease-in-out 0.1s, color ease-in-out 0.1s;
-}
-
-button:hover,
-.btn:hover {
-  color: rgb(230, 116, 116);
-  border: inherit;
-  transform: scale(1.3);
-}
-
-.button,
-#back-button {
-  display: block;
-  width: max-content;
+.alert{
+  width: 50vw;
   text-align: center;
-  margin: 0 auto;
-  color: black;
+  padding: 12px 16px;
+  font-size: 14px;
+  
 }
 
-form {
+#success-alert{
+  color: aliceblue;
+  background-color: teal;
+  padding: inherit;
+}
+
+#error-alert{
+  color: white;
+  background-color: tomato;
+  padding: inherit;
+}
+
+/* Landing Page Styles */
+.navbar{
+  color: rgb(0, 0, 0);
+  background-color: rgba(245, 252, 245, 0.322);
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.input {
-  font-size: 32px;
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom: 16px;
-  width: 320px;
-  border-bottom: 1px solid rgba(204, 0, 0, 0.2);
-}
-
-input + button {
-  margin-top: 16px;
-  /*margin-bottom: 16px;*/
-}
-
-nav {
-  padding: 0 24px;
-}
-/*nav > h1{*/
-/*    display:inline;*/
-/*    font-size:24px;*/
-/*    text-align:left;*/
-/*}*/
-
-/*nav > a {*/
-/*font-size: 16px;*/
-/* align-self:flex-end;  */
-/*}*/
-
-.navbar {
-  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(204, 0, 0, 0.2);
+  padding: 1rem 0;
 }
 
-.navbar-links {
-  display: flex;
-  margin-right: 24px;
+
+
+#logo {
+  padding-left: 48px;
+
 }
 
 div > a {
-  padding: 0 8px;
+  text-decoration: none;
+  color: inherit;
 }
 
-.comments-wrapper {
-  padding: 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 500px;
-  align-items: baseline;
-  font-weight: 200;
+.navbar-links{
+  margin-right: 36px;
 }
 
-.comments {
-  font-size: larger;
-  display: inline;
-  margin: 16px;
+.navbar-links > a {
+  padding: 12px;
+  margin: 0 12px;
 }
 
-.comment-timestamp {
-  margin-left: 48px;
+
+main{
+height: 100vh;
+background-image: url('https://source.unsplash.com/weekly?camp');
+background-position: right 55% bottom 15%;
+background-repeat: no-repeat;
+background-size: cover;
+width: 100vw;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
 }
 
-.camp-info {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 500px;
-  padding-top: 16px;
-  margin-bottom: 16px;
+#brand-text{
+  color: white;
+  margin-bottom: 24px;
+
 }
 
-.camp-description {
-  display: inline-block;
-  margin: 0;
-  font-size: 400;
+section > h1{
+  font-size: 5.653em;
+  font-weight: 500;
+  text-align: center;
 }
 
-.price {
+section > h4{
+text-align: center;
+font-size: 2.827em;
+font-weight: 300;
+}
+
+section > h4 > strong {
   font-weight: 400;
-  margin: 0;
-  align-self: flex-end;
+  font-size: inherit;
+}
+
+#cta-buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+#cta-buttons > a{
+  padding: 12px;
+  margin: 12px;
+  border-radius: 16% 24% 16% 24%;
+}
+
+#offer-btn{
+
+background: #FF8A55;
+border-radius: 8px;
+font-size: 16px;
+color: #FFFFFF;
+text-align: center;
+border-color: #FF8A55;
+}
+
+#signup-btn {
+  background: #6A8971;
+border-radius: 8px;
+font-size: 16px;
+color: #FFFFFF;
+text-align: center;
+border-color: #6A8971;
 }
