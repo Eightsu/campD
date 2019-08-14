@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 const flash = require('connect-flash');
 
@@ -41,6 +41,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //-----------------------
+
 
 mongoose.connect('mongodb://localhost:27017/su_camp', {
   useNewUrlParser: true,
