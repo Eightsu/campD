@@ -4,7 +4,8 @@
   "description": "Database view for campgrounds",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
   },
   "author": "Jamar Powell",
   "license": "ISC",
